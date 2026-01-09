@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/jeremytondo/atelier-notes/internal/config"
 	"github.com/jeremytondo/atelier-notes/internal/notes"
 	"github.com/spf13/cobra"
 )
@@ -19,14 +20,9 @@ var newCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		title := args[0]
 		
-		// Default to current directory if not specified or empty
+		// Default to configured directory if not specified
 		if targetDir == "" {
-			var err error
-			targetDir, err = os.Getwd()
-			if err != nil {
-				fmt.Printf("Error getting current directory: %v\n", err)
-				os.Exit(1)
-			}
+			targetDir = config.GetNotesDir()
 		}
 
 		path, err := notes.CreateNote(title, targetDir)

@@ -3,6 +3,7 @@ package cli
 import (
 	"os"
 
+	"github.com/jeremytondo/atelier-notes/internal/config"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,8 @@ func Execute() {
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)
 	}
+}
+
+func init() {
+	cobra.OnInitialize(config.Load)
 }
