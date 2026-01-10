@@ -1,10 +1,10 @@
 # Plan: AI "Ask" Command Implementation
 
 ## Phase 1: Foundation & Context Gathering
-- [ ] Task: Create the `ask` command skeleton in `internal/cli/ask.go` and register it in `cli.go`.
-- [ ] Task: Implement `internal/notes/reader.go` to gather and concatenate all `.md` files from the notes directory.
-- [ ] Task: Implement unit tests for note aggregation, ensuring it handles empty directories and non-markdown files correctly.
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Foundation & Context Gathering' (Protocol in workflow.md)
+- [x] Task: Create the `ask` command skeleton in `internal/cli/ask.go` and register it in `cli.go`.
+- [x] Task: Implement `internal/notes/reader.go` to gather and concatenate all `.md` files from the notes directory.
+- [x] Task: Implement unit tests for note aggregation, ensuring it handles empty directories and non-markdown files correctly.
+- [~] Task: Conductor - User Manual Verification 'Phase 1: Foundation & Context Gathering' (Protocol in workflow.md)
 
 ## Phase 2: Gemini CLI Integration
 - [ ] Task: Implement the prompt construction logic (System Preamble + Notes Context + User Question).
