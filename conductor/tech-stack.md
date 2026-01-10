@@ -8,7 +8,7 @@
 ## Libraries and Tools
 *   **fsnotify:** For monitoring filesystem changes, potentially used for real-time indexing or synchronization.
 *   **Afero:** A filesystem abstraction layer that enables easier testing by mocking the file system.
-*   **Gemini CLI:** Integration for semantic search and AI-driven features.
+*   **Gemini CLI:** Integration for natural language querying (`ask` command), semantic search, and AI-driven features.
 
 ## Data Formats
 *   **Markdown:** The primary format for user notes, ensuring readability and interoperability.

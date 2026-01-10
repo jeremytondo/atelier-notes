@@ -14,6 +14,7 @@ The primary audience for Atelier Notes consists of individual developers and pow
 *   **Advanced Retrieval:** Robust semantic search capabilities powered by the Gemini CLI to find notes based on meaning rather than just keywords.
 *   **Seamless Capture:** High-fidelity integration between mobile capture (Google Keep), desktop editing (Neovim), and the local filesystem.
 *   **Automated Organization:** AI-driven agents that automatically manage metadata and file structure, ensuring the knowledge base remains organized without manual effort.
+*   **Natural Language Querying:** An `ask` command that allows users to query their notes using natural language, powered by the Gemini CLI.
 
 ## User Experience (UX) Philosophy
 *   **Speed and Efficiency:** Atelier Notes prioritizes near-instantaneous, keyboard-centric operations to maintain user flow.
