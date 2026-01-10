@@ -5,10 +5,10 @@
 - [x] Task: Create reproduction test case for existing 'new' command behavior c52437c
     - *Goal:* Ensure we have a baseline test before refactoring.
     - *Details:* Verify 'new' creates a file with expected content.
-- [ ] Task: Rename 'new.go' to 'create.go' and refactor command definition
+- [x] Task: Rename 'new.go' to 'create.go' and refactor command definition 5ad2b6d
     - *Goal:* Change the Cobra command Use string from "new" to "create".
     - *Details:* Update all internal references and help text.
-- [ ] Task: Verify 'create' command passes baseline tests
+- [x] Task: Verify 'create' command passes baseline tests 5ad2b6d
     - *Goal:* Ensure the rename didn't break basic functionality.
     - *Details:* Update the test to call 'create' instead of 'new'.
 - [ ] Task: Conductor - User Manual Verification 'Rename 'new' Command to 'create'' (Protocol in workflow.md)
