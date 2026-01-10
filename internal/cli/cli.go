@@ -7,6 +7,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var targetDir string
+
 var rootCmd = &cobra.Command{
 	Use:   "atelier-notes",
 	Short: "AI-enhanced note-taking system",
@@ -23,4 +25,5 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(config.Load)
+	rootCmd.PersistentFlags().StringVarP(&targetDir, "dir", "d", "", "Target directory for notes")
 }

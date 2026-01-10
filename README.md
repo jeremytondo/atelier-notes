@@ -19,5 +19,5 @@ atelier-notes create --daily
 This will create a file named `daily-YYYYMMDD.md` with the `#daily` tag and a standardized title.
 
 ### Flags
-*   `-d, --dir`: Specify the directory to create the note in (overrides configuration).
-*   `--daily`: Create a daily note instead of a custom one.
+*   `-d, --dir`: (Global) Specify the directory to create/list notes in (overrides configuration).
+*   `--daily`: (Create only) Create a daily note instead of a custom one.

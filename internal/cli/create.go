@@ -9,8 +9,7 @@ import (
 )
 
 var (
-	targetDir string
-	daily     bool
+	daily bool
 )
 
 var createCmd = &cobra.Command{
@@ -50,6 +49,5 @@ var createCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(createCmd)
-	createCmd.Flags().StringVarP(&targetDir, "dir", "d", "", "Directory to create the note in")
 	createCmd.Flags().BoolVar(&daily, "daily", false, "Create a daily note")
 }

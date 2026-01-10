@@ -43,7 +43,6 @@ var listCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(listCmd)
-	listCmd.Flags().StringVarP(&targetDir, "dir", "d", "", "Directory to list notes from")
 	listCmd.Flags().BoolVar(&useFzf, "fzf", false, "Use fzf for fuzzy searching")
 }
 
