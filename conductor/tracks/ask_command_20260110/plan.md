@@ -7,8 +7,8 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Foundation & Context Gathering' (Protocol in workflow.md)
 
 ## Phase 2: Gemini CLI Integration
-- [ ] Task: Implement the prompt construction logic (System Preamble + Notes Context + User Question).
-- [ ] Task: Implement a runner for the Gemini CLI to execute "headless" commands and capture output.
+- [x] Task: Implement the prompt construction logic (System Preamble + Notes Context + User Question). 3197190
+- [~] Task: Implement a runner for the Gemini CLI to execute "headless" commands and capture output.
 - [ ] Task: Integrate the prompt builder with the Gemini runner inside the `ask` command.
 - [ ] Task: Add basic stdout output for the AI's response.
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Gemini CLI Integration' (Protocol in workflow.md)
