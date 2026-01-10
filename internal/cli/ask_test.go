@@ -2,31 +2,69 @@ package cli
 
 import (
 	"bytes"
+	"fmt"
+	"os"
+	"os/exec"
+	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/jeremytondo/atelier-notes/internal/gemini"
 )
 
-func TestAskCommand_Skeleton(t *testing.T) {
-	// Buffer to capture stdout/stderr
+func TestAskCommand(t *testing.T) {
+	// Setup temp dir for notes
+	tempDir, err := os.MkdirTemp("", "cli-ask-test")
+	if err != nil {
+		t.Fatalf("Failed to create temp dir: %v", err)
+	}
+	defer func() { _ = os.RemoveAll(tempDir) }()
+
+	// Create a test note
+	notePath := filepath.Join(tempDir, "test.md")
+	err = os.WriteFile(notePath, []byte("# Test Note\nThis is a test."), 0644)
+	if err != nil {
+		t.Fatalf("Failed to create test note: %v", err)
+	}
+
+	// Set targetDir to tempDir
+	targetDir = tempDir
+
+	// Mock gemini
+	gemini.ExecCommand = func(command string, args ...string) *exec.Cmd {
+		cs := []string{"-test.run=TestHelperProcess", "--", command}
+		cs = append(cs, args...)
+		cmd := exec.Command(os.Args[0], cs...)
+		cmd.Env = []string{"GO_WANT_HELPER_PROCESS=1"}
+		return cmd
+	}
+	defer func() { gemini.ExecCommand = exec.Command }()
+
+	// Buffer to capture stdout
 	buf := new(bytes.Buffer)
 	rootCmd.SetOut(buf)
 	rootCmd.SetErr(buf)
 
-	// Execute command: atelier-notes ask "Test question"
-	rootCmd.SetArgs([]string{"ask", "Test question"})
-	err := rootCmd.Execute()
-	
-	// Expect nil error for now (skeleton should just run)
+	// Execute command: atelier-notes ask "What is in the test note?"
+	rootCmd.SetArgs([]string{"ask", "What is in the test note?"})
+	err = rootCmd.Execute()
 	if err != nil {
 		t.Fatalf("Command execution failed: %v", err)
 	}
 
-	// Verify output contains a placeholder message
 	output := strings.TrimSpace(buf.String())
-	expected := "Ask command is not yet implemented"
-	if !strings.Contains(output, expected) {
-		t.Errorf("Expected output to contain '%s', got '%s'", expected, output)
+	expected := "mocked output"
+	if output != expected {
+		t.Errorf("Expected output %q, got %q", expected, output)
 	}
+}
+
+func TestHelperProcess(t *testing.T) {
+	if os.Getenv("GO_WANT_HELPER_PROCESS") != "1" {
+		return
+	}
+	fmt.Print("mocked output")
+	os.Exit(0)
 }
 
 func TestAskCommand_NoArgs(t *testing.T) {
