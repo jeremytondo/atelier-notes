@@ -10,21 +10,34 @@ import (
 
 var (
 	targetDir string
+	daily     bool
 )
 
 var createCmd = &cobra.Command{
 	Use:   "create [title]",
 	Short: "Create a new note",
-	Args:  cobra.ExactArgs(1),
+	Args: func(cmd *cobra.Command, args []string) error {
+		if daily {
+			return nil
+		}
+		return cobra.ExactArgs(1)(cmd, args)
+	},
 	Run: func(cmd *cobra.Command, args []string) {
-		title := args[0]
-		
 		// Default to configured directory if not specified
 		if targetDir == "" {
 			targetDir = config.GetNotesDir()
 		}
 
-		path, err := notes.CreateNote(title, targetDir)
+		var path string
+		var err error
+
+		if daily {
+			path, err = notes.CreateDailyNote(targetDir)
+		} else {
+			title := args[0]
+			path, err = notes.CreateNote(title, targetDir)
+		}
+
 		if err != nil {
 			cmd.PrintErrf("Error creating note: %v\n", err)
 			os.Exit(1)
@@ -38,4 +51,5 @@ var createCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(createCmd)
 	createCmd.Flags().StringVarP(&targetDir, "dir", "d", "", "Directory to create the note in")
+	createCmd.Flags().BoolVar(&daily, "daily", false, "Create a daily note")
 }
