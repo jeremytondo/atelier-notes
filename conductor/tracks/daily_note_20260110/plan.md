@@ -2,7 +2,7 @@
 
 ## Phase 1: Rename 'new' Command to 'create'
 
-- [ ] Task: Create reproduction test case for existing 'new' command behavior
+- [x] Task: Create reproduction test case for existing 'new' command behavior c52437c
     - *Goal:* Ensure we have a baseline test before refactoring.
     - *Details:* Verify 'new' creates a file with expected content.
 - [ ] Task: Rename 'new.go' to 'create.go' and refactor command definition
