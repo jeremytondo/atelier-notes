@@ -8,8 +8,8 @@
 
 ## Phase 2: Gemini CLI Integration
 - [x] Task: Implement the prompt construction logic (System Preamble + Notes Context + User Question). 3197190
-- [~] Task: Implement a runner for the Gemini CLI to execute "headless" commands and capture output.
-- [ ] Task: Integrate the prompt builder with the Gemini runner inside the `ask` command.
+- [x] Task: Implement a runner for the Gemini CLI to execute "headless" commands and capture output. 853d17c
+- [~] Task: Integrate the prompt builder with the Gemini runner inside the `ask` command.
 - [ ] Task: Add basic stdout output for the AI's response.
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Gemini CLI Integration' (Protocol in workflow.md)
 
