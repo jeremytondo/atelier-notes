@@ -34,9 +34,9 @@ var listCmd = &cobra.Command{
 
 		// 3. Handle Output
 		if useFzf {
-			runFzf(noteList)
+			runFzf(cmd, noteList)
 		} else {
-			printJSON(noteList)
+			printJSON(cmd, noteList)
 		}
 	},
 }
@@ -47,19 +47,19 @@ func init() {
 	listCmd.Flags().BoolVar(&useFzf, "fzf", false, "Use fzf for fuzzy searching")
 }
 
-func printJSON(notes []notes.Note) {
-	encoder := json.NewEncoder(os.Stdout)
+func printJSON(cmd *cobra.Command, notes []notes.Note) {
+	encoder := json.NewEncoder(cmd.OutOrStdout())
 	encoder.SetIndent("", "  ")
 	if err := encoder.Encode(notes); err != nil {
-		fmt.Fprintf(os.Stderr, "Error parsing JSON: %v\n", err)
+		cmd.PrintErrf("Error parsing JSON: %v\n", err)
 		os.Exit(1)
 	}
 }
 
-func runFzf(noteList []notes.Note) {
+func runFzf(cmd *cobra.Command, noteList []notes.Note) {
 	// check if fzf is installed
 	if _, err := exec.LookPath("fzf"); err != nil {
-		fmt.Fprintln(os.Stderr, "Error: fzf is not installed or not in PATH")
+		cmd.PrintErrln("Error: fzf is not installed or not in PATH")
 		os.Exit(1)
 	}
 
@@ -70,7 +70,7 @@ func runFzf(noteList []notes.Note) {
 	
 	for _, n := range noteList {
 		if _, err := fmt.Fprintf(&inputBuffer, "%s%s%s%s%s\n", n.Title, delimiter, n.Date, delimiter, n.Path); err != nil {
-			fmt.Fprintf(os.Stderr, "Error writing to buffer: %v\n", err)
+			cmd.PrintErrf("Error writing to buffer: %v\n", err)
 			return
 		}
 	}
@@ -101,7 +101,7 @@ func runFzf(noteList []notes.Note) {
 				return
 			}
 		}
-		fmt.Fprintf(os.Stderr, "Error running fzf: %v\n", err)
+		cmd.PrintErrf("Error running fzf: %v\n", err)
 		return
 	}
 
@@ -113,7 +113,7 @@ func runFzf(noteList []notes.Note) {
 
 	parts := strings.Split(selectedLine, delimiter)
 	if len(parts) < 3 {
-		fmt.Fprintf(os.Stderr, "Error parsing selection\n")
+		cmd.PrintErrln("Error parsing selection")
 		return
 	}
 	path := parts[len(parts)-1] // Last part is the path
@@ -121,7 +121,7 @@ func runFzf(noteList []notes.Note) {
 	// Open editor
 	editor := os.Getenv("EDITOR")
 	if editor == "" {
-		fmt.Println(path) // Fallback: just print path
+		cmd.Println(path) // Fallback: just print path
 		return
 	}
 
@@ -130,6 +130,6 @@ func runFzf(noteList []notes.Note) {
 	editorCmd.Stdout = os.Stdout
 	editorCmd.Stderr = os.Stderr
 	if err := editorCmd.Run(); err != nil {
-		fmt.Fprintf(os.Stderr, "Error opening editor: %v\n", err)
+		cmd.PrintErrf("Error opening editor: %v\n", err)
 	}
 }
