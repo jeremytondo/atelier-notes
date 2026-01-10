@@ -9,15 +9,15 @@
 
 ## Phase 2: Implement Daily Note Logic
 
-- [ ] Task: Write failing test for '--daily' flag
+- [x] Task: Write failing test for '--daily' flag c04c9a9
     - *Goal:* Define the expected behavior for 'create --daily'.
     - *Details:* Test should assert:
         - Filename matches 'daily-YYYYMMDD.md'
         - Content contains 'Daily Note: YYYY-MM-DD'
         - Content contains '#daily' tag
-- [ ] Task: Implement '--daily' flag in 'create' command
+- [x] Task: Implement '--daily' flag in 'create' command bfb5d4d
     - *Goal:* Add the boolean flag to the Cobra command.
-- [ ] Task: Implement Daily Note generation logic
+- [x] Task: Implement Daily Note generation logic bfb5d4d
     - *Goal:* Pass the failing test.
     - *Details:*
         - Logic to generate current date strings.
