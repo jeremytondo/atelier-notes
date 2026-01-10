@@ -18,6 +18,13 @@ atelier-notes create --daily
 ```
 This will create a file named `daily-YYYYMMDD.md` with the `#daily` tag and a standardized title.
 
+### Ask about your notes
+To ask a natural language question about your notes:
+```bash
+atelier-notes ask "What are the main projects I'm working on?"
+```
+This command gathers context from all your markdown notes and uses AI to generate a concise answer.
+
 ### Flags
 *   `-d, --dir`: (Global) Specify the directory to create/list notes in (overrides configuration).
 *   `--daily`: (Create only) Create a daily note instead of a custom one.
