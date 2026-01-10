@@ -10,7 +10,7 @@ var ExecCommand = exec.Command
 
 // Run executes the Gemini CLI with the given prompt and returns the output.
 func Run(prompt string) (string, error) {
-	cmd := ExecCommand("gemini", "--headless")
+	cmd := ExecCommand("gemini")
 	
 	cmd.Stdin = bytes.NewBufferString(prompt)
 	
