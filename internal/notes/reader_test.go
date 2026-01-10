@@ -59,7 +59,7 @@ func TestReadAllNotes(t *testing.T) {
 	if strings.Contains(content, "Should be ignored") {
 		t.Error("Content should not contain text files")
 	}
-	
+
 	// Check format/delimiters (optional but good for context)
 	// We might want to prepend filename or something.
 }

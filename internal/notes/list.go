@@ -40,7 +40,7 @@ func ListNotes(dir string) ([]Note, error) {
 		fullPath := filepath.Join(dir, entry.Name())
 		note, err := parseNote(fullPath)
 		if err != nil {
-			// Skip files that can't be parsed or log warning? 
+			// Skip files that can't be parsed or log warning?
 			// For now, we'll just skip to be robust.
 			continue
 		}
@@ -67,13 +67,13 @@ func parseNote(path string) (Note, error) {
 		// parts[0] is empty (before first ---)
 		// parts[1] is frontmatter
 		// parts[2] is content
-		
+
 		var fm frontmatter
 		if err := yaml.Unmarshal(parts[1], &fm); err == nil {
 			note.Date = fm.Date
 			note.Tags = fm.Tags
 		}
-		
+
 		// Parse title from content (first line starting with #)
 		scanner := bufio.NewScanner(bytes.NewReader(parts[2]))
 		for scanner.Scan() {
@@ -84,8 +84,8 @@ func parseNote(path string) (Note, error) {
 			}
 		}
 	} else {
-        // Fallback if no frontmatter found, try to find title in whole file
-        scanner := bufio.NewScanner(bytes.NewReader(content))
+		// Fallback if no frontmatter found, try to find title in whole file
+		scanner := bufio.NewScanner(bytes.NewReader(content))
 		for scanner.Scan() {
 			line := strings.TrimSpace(scanner.Text())
 			if strings.HasPrefix(line, "# ") {
@@ -93,7 +93,7 @@ func parseNote(path string) (Note, error) {
 				break
 			}
 		}
-    }
+	}
 
 	// Fallback title to filename if not found
 	if note.Title == "" {

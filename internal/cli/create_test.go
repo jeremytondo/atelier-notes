@@ -67,7 +67,7 @@ func TestCreateDailyCommand(t *testing.T) {
 	}
 
 	output := strings.TrimSpace(buf.String())
-	
+
 	// Expect filename like daily-20260110.md
 	today := time.Now().Format("20060102")
 	expectedFilename := "daily-" + today + ".md"
@@ -83,7 +83,7 @@ func TestCreateDailyCommand(t *testing.T) {
 	}
 
 	expectedTitle := "Daily Note: " + time.Now().Format("2006-01-02")
-	if !strings.Contains(string(content), "# " + expectedTitle) {
+	if !strings.Contains(string(content), "# "+expectedTitle) {
 		t.Errorf("Content does not contain expected daily title. Got: %s", string(content))
 	}
 

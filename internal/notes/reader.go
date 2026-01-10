@@ -28,7 +28,7 @@ func ReadAllNotes(dir string) (string, error) {
 		path := filepath.Join(dir, entry.Name())
 		content, err := os.ReadFile(path)
 		if err != nil {
-			// Warn and skip, or return error? 
+			// Warn and skip, or return error?
 			// For robustness, let's skip unreadable files but maybe log?
 			// Since we don't have a logger setup, let's just skip.
 			continue

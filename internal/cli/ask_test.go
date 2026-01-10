@@ -128,7 +128,7 @@ func TestAskCommand_NoArgs(t *testing.T) {
 	// Should fail because it requires an argument
 	rootCmd.SetArgs([]string{"ask"})
 	err := rootCmd.Execute()
-	
+
 	if err == nil {
 		t.Error("Expected error when no question provided, got nil")
 	}

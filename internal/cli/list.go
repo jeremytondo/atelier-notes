@@ -66,7 +66,7 @@ func runFzf(cmd *cobra.Command, noteList []notes.Note) {
 	// Format: Title <tab> Date <tab> Path
 	var inputBuffer bytes.Buffer
 	delimiter := "\t"
-	
+
 	for _, n := range noteList {
 		if _, err := fmt.Fprintf(&inputBuffer, "%s%s%s%s%s\n", n.Title, delimiter, n.Date, delimiter, n.Path); err != nil {
 			cmd.PrintErrf("Error writing to buffer: %v\n", err)
@@ -81,13 +81,13 @@ func runFzf(cmd *cobra.Command, noteList []notes.Note) {
 		previewCmd = "bat --style=numbers --color=always {-1}"
 	}
 
-	fzfCmd := exec.Command("fzf", 
+	fzfCmd := exec.Command("fzf",
 		"--delimiter", delimiter,
 		"--with-nth", "1", // Show only Title
 		"--preview", previewCmd,
 		"--preview-window", "right:50%:wrap",
 	)
-	
+
 	fzfCmd.Stdin = &inputBuffer
 	fzfCmd.Stderr = os.Stderr // fzf uses stderr for UI
 
