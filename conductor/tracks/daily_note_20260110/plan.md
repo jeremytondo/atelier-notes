@@ -14,8 +14,8 @@
 - [x] Task: Implement Daily Note generation logic bfb5d4d
 - [x] Task: Conductor - User Manual Verification 'Implement Daily Note Logic' (Protocol in workflow.md) a3f9114
 
-## Phase 3: Final Polish & Documentation
+## Phase 3: Final Polish & Documentation [checkpoint: df98214]
 
-- [ ] Task: Update README to reflect 'create' command and '--daily' usage
-- [ ] Task: Run full test suite and ensure >80% coverage
-- [ ] Task: Conductor - User Manual Verification 'Final Polish & Documentation' (Protocol in workflow.md)
+- [x] Task: Update README to reflect 'create' command and '--daily' usage 93d7c3c
+- [x] Task: Run full test suite and ensure >80% coverage 93d7c3c
+- [x] Task: Conductor - User Manual Verification 'Final Polish & Documentation' (Protocol in workflow.md) df98214
