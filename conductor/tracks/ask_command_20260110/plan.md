@@ -14,7 +14,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Gemini CLI Integration' (Protocol in workflow.md)
 
 ## Phase 3: Error Handling & UX
-- [ ] Task: Implement error handling to intercept Gemini CLI failures and provide user-friendly messages (especially for token limit/context window errors).
-- [ ] Task: Add a "Thinking..." or "Processing..." status indicator to provide user feedback during the AI call.
+- [x] Task: Implement error handling to intercept Gemini CLI failures and provide user-friendly messages (especially for token limit/context window errors). d7c3c4f
+- [~] Task: Add a "Thinking..." or "Processing..." status indicator to provide user feedback during the AI call.
 - [ ] Task: Perform a final quality gate check (linting, basic manual verification, ensuring no tests were skipped).
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Error Handling & UX' (Protocol in workflow.md)
