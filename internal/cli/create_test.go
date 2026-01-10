@@ -14,7 +14,7 @@ func TestCreateCommand(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to create temp dir: %v", err)
 	}
-	defer os.RemoveAll(tempDir)
+	defer func() { _ = os.RemoveAll(tempDir) }()
 
 	// Set targetDir to tempDir to override config
 	targetDir = tempDir
@@ -49,7 +49,7 @@ func TestCreateDailyCommand(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to create temp dir: %v", err)
 	}
-	defer os.RemoveAll(tempDir)
+	defer func() { _ = os.RemoveAll(tempDir) }()
 
 	// Set targetDir to tempDir
 	targetDir = tempDir

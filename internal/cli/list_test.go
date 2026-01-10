@@ -16,7 +16,7 @@ func TestListCommand(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to create temp dir: %v", err)
 	}
-	defer os.RemoveAll(tempDir)
+	defer func() { _ = os.RemoveAll(tempDir) }()
 
 	// Create a test note using internal logic to be sure it's valid
 	_, err = notes.CreateNote("List Test Note", tempDir)

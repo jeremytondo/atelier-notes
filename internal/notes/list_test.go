@@ -11,7 +11,7 @@ func TestListNotes(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to create temp dir: %v", err)
 	}
-	defer os.RemoveAll(tempDir)
+	defer func() { _ = os.RemoveAll(tempDir) }()
 
 	// Create a few test notes
 	note1 := `---
@@ -75,7 +75,7 @@ func TestParseNote_Fallback(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to create temp dir: %v", err)
 	}
-	defer os.RemoveAll(tempDir)
+	defer func() { _ = os.RemoveAll(tempDir) }()
 
 	path := filepath.Join(tempDir, "no-title.md")
 	if err := os.WriteFile(path, []byte("just some content"), 0644); err != nil {
