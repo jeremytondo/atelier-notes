@@ -12,8 +12,8 @@ var (
 	targetDir string
 )
 
-var newCmd = &cobra.Command{
-	Use:   "new [title]",
+var createCmd = &cobra.Command{
+	Use:   "create [title]",
 	Short: "Create a new note",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -36,6 +36,6 @@ var newCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(newCmd)
-	newCmd.Flags().StringVarP(&targetDir, "dir", "d", "", "Directory to create the note in")
+	rootCmd.AddCommand(createCmd)
+	createCmd.Flags().StringVarP(&targetDir, "dir", "d", "", "Directory to create the note in")
 }

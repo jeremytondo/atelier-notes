@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestNewCommand(t *testing.T) {
+func TestCreateCommand(t *testing.T) {
 	// Setup temp dir for notes
 	tempDir, err := os.MkdirTemp("", "cli-test")
 	if err != nil {
@@ -23,8 +23,8 @@ func TestNewCommand(t *testing.T) {
 	rootCmd.SetOut(buf)
 	rootCmd.SetErr(buf)
 
-	// Execute command: atelier-notes new "My Test Note"
-	rootCmd.SetArgs([]string{"new", "My Test Note"})
+	// Execute command: atelier-notes create "My Test Note"
+	rootCmd.SetArgs([]string{"create", "My Test Note"})
 	err = rootCmd.Execute()
 	if err != nil {
 		t.Fatalf("Command execution failed: %v", err)
