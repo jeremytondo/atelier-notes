@@ -1,6 +1,8 @@
 package cli
 
 import (
+	"strings"
+
 	"github.com/jeremytondo/atelier-notes/internal/config"
 	"github.com/jeremytondo/atelier-notes/internal/gemini"
 	"github.com/jeremytondo/atelier-notes/internal/notes"
@@ -29,7 +31,13 @@ var askCmd = &cobra.Command{
 
 		response, err := gemini.Run(prompt)
 		if err != nil {
-			cmd.PrintErrf("Error from AI: %v\n", err)
+			errStr := err.Error()
+			if strings.Contains(errStr, "token limit exceeded") || strings.Contains(errStr, "context window") {
+				cmd.PrintErrln("The combined size of your notes exceeds the AI's current context window.")
+				cmd.PrintErrln("Try removing some large notes or wait for a future update with smarter retrieval.")
+			} else {
+				cmd.PrintErrf("Gemini CLI failed: %v\n", err)
+			}
 			return
 		}
 

@@ -59,6 +59,54 @@ func TestAskCommand(t *testing.T) {
 	}
 }
 
+func TestAskCommand_Error(t *testing.T) {
+	// Setup temp dir for notes
+	tempDir, err := os.MkdirTemp("", "cli-ask-error-test")
+	if err != nil {
+		t.Fatalf("Failed to create temp dir: %v", err)
+	}
+	defer func() { _ = os.RemoveAll(tempDir) }()
+
+	// Set targetDir to tempDir
+	targetDir = tempDir
+
+	// Mock gemini to return an error
+	gemini.ExecCommand = func(command string, args ...string) *exec.Cmd {
+		cs := []string{"-test.run=TestHelperErrorProcess", "--", command}
+		cs = append(cs, args...)
+		cmd := exec.Command(os.Args[0], cs...)
+		cmd.Env = []string{"GO_WANT_HELPER_ERROR_PROCESS=1"}
+		return cmd
+	}
+	defer func() { gemini.ExecCommand = exec.Command }()
+
+	// Buffer to capture stdout/stderr
+	buf := new(bytes.Buffer)
+	rootCmd.SetOut(buf)
+	rootCmd.SetErr(buf)
+
+	// Execute command
+	rootCmd.SetArgs([]string{"ask", "some question"})
+	err = rootCmd.Execute()
+	// The command should not return an error because we handle it and print a friendly message
+	if err != nil {
+		t.Fatalf("Command execution failed: %v", err)
+	}
+
+	output := buf.String()
+	if !strings.Contains(output, "exceeds the AI's current context window") {
+		t.Errorf("Expected context window error message, got %q", output)
+	}
+}
+
+func TestHelperErrorProcess(t *testing.T) {
+	if os.Getenv("GO_WANT_HELPER_ERROR_PROCESS") != "1" {
+		return
+	}
+	fmt.Fprintf(os.Stderr, "token limit exceeded")
+	os.Exit(1)
+}
+
 func TestHelperProcess(t *testing.T) {
 	if os.Getenv("GO_WANT_HELPER_PROCESS") != "1" {
 		return
