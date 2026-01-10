@@ -54,8 +54,11 @@ func TestAskCommand(t *testing.T) {
 
 	output := strings.TrimSpace(buf.String())
 	expected := "mocked output"
-	if output != expected {
-		t.Errorf("Expected output %q, got %q", expected, output)
+	if !strings.Contains(output, expected) {
+		t.Errorf("Expected output to contain %q, got %q", expected, output)
+	}
+	if !strings.Contains(output, "Thinking...") {
+		t.Errorf("Expected output to contain 'Thinking...', got %q", output)
 	}
 }
 

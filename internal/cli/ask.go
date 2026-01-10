@@ -29,6 +29,7 @@ var askCmd = &cobra.Command{
 
 		prompt := notes.BuildAskPrompt(notesContext, question)
 
+		cmd.PrintErrln("Thinking...")
 		response, err := gemini.Run(prompt)
 		if err != nil {
 			errStr := err.Error()
