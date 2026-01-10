@@ -7,23 +7,12 @@
 - [x] Task: Verify 'create' command passes baseline tests 5ad2b6d
 - [x] Task: Conductor - User Manual Verification 'Rename 'new' Command to 'create'' (Protocol in workflow.md) 5246e6d
 
-## Phase 2: Implement Daily Note Logic
+## Phase 2: Implement Daily Note Logic [checkpoint: a3f9114]
 
-- [x] Task: Write failing test for '--daily' flag c04c9a9
-    - *Goal:* Define the expected behavior for 'create --daily'.
-    - *Details:* Test should assert:
-        - Filename matches 'daily-YYYYMMDD.md'
-        - Content contains 'Daily Note: YYYY-MM-DD'
-        - Content contains '#daily' tag
+- [x] Task: Write failing test for '--daily' flag c04c49
 - [x] Task: Implement '--daily' flag in 'create' command bfb5d4d
-    - *Goal:* Add the boolean flag to the Cobra command.
 - [x] Task: Implement Daily Note generation logic bfb5d4d
-    - *Goal:* Pass the failing test.
-    - *Details:*
-        - Logic to generate current date strings.
-        - Logic to construct filename and content based on flag.
-        - Ensure it handles the case where no title argument is provided if --daily is set.
-- [ ] Task: Conductor - User Manual Verification 'Implement Daily Note Logic' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Implement Daily Note Logic' (Protocol in workflow.md) a3f9114
 
 ## Phase 3: Final Polish & Documentation
 
