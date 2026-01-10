@@ -1,7 +1,6 @@
 package cli
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/jeremytondo/atelier-notes/internal/config"
@@ -27,12 +26,12 @@ var newCmd = &cobra.Command{
 
 		path, err := notes.CreateNote(title, targetDir)
 		if err != nil {
-			fmt.Printf("Error creating note: %v\n", err)
+			cmd.PrintErrf("Error creating note: %v\n", err)
 			os.Exit(1)
 		}
 
 		// Print only the path to stdout for easy pipe/editor integration
-		fmt.Println(path)
+		cmd.Println(path)
 	},
 }
 
