@@ -28,3 +28,29 @@ This command gathers context from all your markdown notes and uses AI to generat
 ### Flags
 *   `-d, --dir`: (Global) Specify the directory to create/list notes in (overrides configuration).
 *   `--daily`: (Create only) Create a daily note instead of a custom one.
+
+## Neovim Plugin
+
+This repository also contains a Neovim plugin that wraps the CLI for a seamless experience.
+
+### Installation
+
+Use your preferred package manager (e.g., `lazy.nvim`). Point it to your local directory or the repository URL.
+
+**Using `lazy.nvim` (Local Development):**
+
+```lua
+{
+  "jeremytondo/atelier-notes",
+  dir = "~/path/to/atelier-notes", -- Adjust path as needed
+  config = function()
+    require("atelier-notes").setup({})
+  end,
+  -- Optional: Build the binary automatically
+  build = "go build -o atelier-notes ./cmd/atelier-notes"
+}
+```
+
+### Features
+
+*   **:AtelierNotesCreate**: Create a new note with a title prompt.
