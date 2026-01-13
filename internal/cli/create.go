@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/jeremytondo/atelier-notes/internal/config"
@@ -43,7 +44,7 @@ var createCmd = &cobra.Command{
 		}
 
 		// Print only the path to stdout for easy pipe/editor integration
-		cmd.Println(path)
+		fmt.Println(path)
 	},
 }
 
